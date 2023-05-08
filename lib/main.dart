@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
-import 'dart:convert';
 
 void main() async {
   await initHiveForFlutter();
@@ -21,6 +20,7 @@ void main() async {
       cache: GraphQLCache(store: HiveStore()),
     ),
   );
+
 
 String requestApi = """
 query (\$perPage: Int) { 
@@ -196,9 +196,9 @@ class MyHomePageState extends State<MyHomePage> {
             options: QueryOptions(
               document: gql(requestApi),
               variables: const {
-                'perPage': 50
+                'perPage': 3
               },
-              pollInterval: const Duration(seconds: 10)
+              pollInterval: const Duration(minutes: 1)
           ), 
             builder: (QueryResult result, { VoidCallback? refetch, FetchMore? fetchMore }) {
               if (result.hasException) {
@@ -212,9 +212,32 @@ class MyHomePageState extends State<MyHomePage> {
                 return const Text('No data');
               }
 
-              var resultApi = json.encode(result.data);
+              List? beta = result.data?['Page']?['activities'];
+              if (beta != null) {
+                print(beta);
+                return ListView.builder(
+                itemCount: beta.length,
+                itemBuilder: (Context, index) {
+                  final userName = beta[index];
 
-              return Text(resultApi);
+                  return Row(
+                    children: <Widget>[
+                      Expanded(
+                        child: Text(userName["user"]?['name'] ?? ''),
+                      ),
+                      Expanded(
+                        child: Image(
+                          image: NetworkImage('${userName["user"]?["avatar"]?["large"]}'),
+                          height: 100,
+                        )
+                      )
+                    ],
+                  );
+                }
+                );
+              }
+              return const Text('No data');
+              
             }),
         ),
       );
