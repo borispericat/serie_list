@@ -230,7 +230,9 @@ class MyHomePageState extends State<MyHomePage> {
                           image: NetworkImage('${userName["user"]?["avatar"]?["large"]}'),
                           height: 100,
                         )
-                      )
+                      ),
+                      userName["text"] != null? Expanded(child: Text(userName["text"])
+                      ): Expanded(child: Text(userName["status"]) )
                     ],
                   );
                 }
