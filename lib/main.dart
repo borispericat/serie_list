@@ -1,165 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
+import 'graphql_request/activities.dart';
 
 void main() async {
   await initHiveForFlutter();
 
   runApp(const MainApp());
 }
-
- final HttpLink httpLink = HttpLink(
-    'https://graphql.anilist.co'
-    );
-
-  final Link link = httpLink;
-
-  ValueNotifier<GraphQLClient> client = ValueNotifier(
-    GraphQLClient(
-      link: link,
-      // The default store is the InMemoryStore, which does NOT persist to disk
-      cache: GraphQLCache(store: HiveStore()),
-    ),
-  );
-
-
-String requestApi = """
-query (\$perPage: Int) { 
-  Page (perPage: \$perPage) {
-     activities(isFollowing: true, sort: ID_DESC) {
-      ... on TextActivity {
-        id
-        userId
-        type
-        replyCount
-        text
-        createdAt
-        user {
-          id
-          name
-          avatar {
-            large
-          }
-        }
-        likes {
-          id
-          name
-          avatar {
-            large
-          }
-        }
-        replies {
-          id
-          text
-          createdAt
-          user {
-            id
-            name
-            avatar {
-              large
-            }
-          }
-          likes {
-            id
-            name
-            avatar {
-              large
-            }
-          }
-        }
-      }
-      ... on ListActivity {
-        id
-        userId
-        type
-        status
-        progress
-        replyCount
-        createdAt
-        user {
-          id
-          name
-          avatar {
-            large
-          }
-        }
-        media {
-          id
-          title {
-            userPreferred
-          }
-        }
-        likes {
-          id
-          name
-          avatar {
-            large
-          }
-        }
-        replies {
-          id
-          text
-          createdAt
-          user {
-            id
-            name
-            avatar {
-              large
-            }
-          }
-          likes {
-            id
-            name
-            avatar {
-              large
-            }
-          }
-        }
-      }
-      ... on MessageActivity {
-        id
-        type
-        replyCount
-        createdAt
-        messenger {
-          id
-          name
-          avatar {
-            large
-          }
-        }
-        likes {
-          id
-          name
-          avatar {
-            large
-          }
-        }
-        replies {
-          id
-          text
-          createdAt
-          user {
-            id
-            name
-            avatar {
-              large
-            }
-          }
-          likes {
-            id
-            name
-            avatar {
-              large
-            }
-          }
-        }
-      }
-    }
-  
-  }
-
-}
-""";
 
 class MainApp extends StatelessWidget {
   const MainApp({super.key});
@@ -168,7 +15,7 @@ class MainApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return  GraphQLProvider(
       client: client,
-      child: MaterialApp(
+      child: const MaterialApp(
       home: MyHomePage()
     )
     ) ;
@@ -208,13 +55,8 @@ class MyHomePageState extends State<MyHomePage> {
                 return const Text('Loading');
               }
 
-              if (result == null) {
-                return const Text('No data');
-              }
-
               List? beta = result.data?['Page']?['activities'];
               if (beta != null) {
-                print(beta);
                 return ListView.builder(
                 itemCount: beta.length,
                 itemBuilder: (Context, index) {

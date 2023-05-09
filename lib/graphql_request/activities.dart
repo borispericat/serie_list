@@ -1,39 +1,12 @@
-import 'package:flutter/material.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
+import 'package:flutter/material.dart';
 
 
- final HttpLink httpLink = HttpLink(
-    'https://graphql.anilist.co'
-    );
 
-  final Link link = httpLink;
-
-  ValueNotifier<GraphQLClient> client = ValueNotifier(
-    GraphQLClient(
-      link: link,
-      // The default store is the InMemoryStore, which does NOT persist to disk
-      cache: GraphQLCache(store: HiveStore()),
-    ),
-  );
 
 String requestApi = """
- query (\$id: Int) { 
-  Media (id: \$id, type: ANIME) { 
-    id
-    title {
-      romaji
-      english
-      native
-    }
-  }
-}
-""";
-
-//type request for disconnect home, to put as a string
-
-
-/*query ($perPage: Int) { 
-  Page (perPage: $perPage) {
+query (\$perPage: Int) { 
+  Page (perPage: \$perPage) {
      activities(isFollowing: true, sort: ID_DESC) {
       ... on TextActivity {
         id
@@ -167,4 +140,20 @@ String requestApi = """
   
   }
 
-}*/
+}
+""";
+
+
+ final HttpLink httpLink = HttpLink(
+    'https://graphql.anilist.co'
+    );
+
+  final Link link = httpLink;
+
+  ValueNotifier<GraphQLClient> client = ValueNotifier(
+    GraphQLClient(
+      link: link,
+      // The default store is the InMemoryStore, which does NOT persist to disk
+      cache: GraphQLCache(store: HiveStore()),
+    ),
+  );
