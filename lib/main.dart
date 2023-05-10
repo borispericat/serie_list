@@ -65,16 +65,43 @@ class MyHomePageState extends State<MyHomePage> {
                   return Row(
                     children: <Widget>[
                       Expanded(
-                        child: Text(userName["user"]?['name'] ?? ''),
-                      ),
-                      Expanded(
-                        child: Image(
-                          image: NetworkImage('${userName["user"]?["avatar"]?["large"]}'),
-                          height: 100,
+                        child: 
+                        Image(
+                          image: NetworkImage('${userName["media"]?["coverImage"]?["large"]}'),
+                          width: 75,
+                          height: 120,
+                          )
+                          ),
+                      Expanded(child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisSize: MainAxisSize.min,
+                        children: <Widget>[
+                        Row(
+                          children: <Widget>[
+                            Expanded(
+                              child: Text(
+                                userName["user"]?['name'] ?? '',
+                                overflow: TextOverflow.ellipsis,
+                                maxLines: 1,
+                                softWrap: false,
+                              ),
+                              ),
+                            Expanded(
+                              child: Image(
+                                image: NetworkImage('${userName["user"]?["avatar"]?["large"]}'),
+                                width: 40,
+                                height: 40,
                         )
                       ),
-                      userName["text"] != null? Expanded(child: Text(userName["text"])
-                      ): Expanded(child: Text(userName["status"]) )
+                          ],
+                        ),
+                      userName["text"] != null? Text(userName["text"])
+                      : Text(userName["status"]) 
+                      
+                      
+                        ]
+                      )),
+
                     ],
                   );
                 }

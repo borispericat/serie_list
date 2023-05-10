@@ -69,6 +69,11 @@ query (\$perPage: Int) {
           title {
             userPreferred
           }
+          coverImage {
+            large
+            medium
+            color
+          }
         }
         likes {
           id
