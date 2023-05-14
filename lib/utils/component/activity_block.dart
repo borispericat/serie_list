@@ -61,27 +61,32 @@ Widget build(BuildContext context) {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisSize: MainAxisSize.min,
                           children: <Widget>[
-                          Row(
-                            children: <Widget>[
-                              Expanded(
-                                child: Text(
-                                  userName["user"]?['name'] ?? '',
-                                  overflow: TextOverflow.ellipsis,
-                                  maxLines: 1,
-                                  softWrap: false,
-                                ),
-                                ),
-                              Expanded(
-                                child: Image(
-                                  image: NetworkImage('${userName["user"]?["avatar"]?["large"]}'),
-                                  width: 40,
-                                  height: 40,
-                          )
-                        ),
-                            ],
+                          SizedBox(
+                            width: 100,
+                            child: Row(
+                              children: <Widget>[
+                                Expanded(
+                                  flex: 2,
+                                  child: Text(
+                                    userName["user"]?['name'] ?? '',
+                                    overflow: TextOverflow.ellipsis,
+                                    maxLines: 1,
+                                    softWrap: false,
+                                  ),
+                                  ),
+                                Expanded(
+                                  flex: 1,
+                                  child: Image(
+                                    image: NetworkImage('${userName["user"]?["avatar"]?["large"]}'),
+                                    width: 40,
+                                    height: 40,
+                            )
+                                                  ),
+                              ],
+                            ),
                           ),
                         userName["text"] != null? Text(userName["text"])
-                        : Text(userName["status"]) 
+                        : Text('${userName["status"]} ${userName["progress"]} of ${userName["media"]?["title"]?["userPreferred"]}') 
                         
                         
                           ]
