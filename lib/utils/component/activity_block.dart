@@ -61,49 +61,52 @@ Widget build(BuildContext context) {
                           flex: 6,
                           child: Container(
                             margin: const EdgeInsets.symmetric(horizontal: 15),
-                            child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisSize: MainAxisSize.min,
-                            children: <Widget>[
-                            Container(
-                              width: 100,
-                              margin: const EdgeInsets.symmetric(vertical: 5),
-                              child: Row(
-                                children: <Widget>[
-                                  Expanded(
-                                    flex: 2,
-                                    
-                                    child: Text(
-                                      userName["user"]?['name'] ?? '',
-                                      overflow: TextOverflow.ellipsis,
-                                      maxLines: 1,
-                                      softWrap: false,
-                                    ),
-                                    ),
-                                  Expanded(
-                                    flex: 1,
-                                    child: Image(
-                                      image: NetworkImage('${userName["user"]?["avatar"]?["large"]}'),
-                                      width: 40,
-                                      height: 40,
-                              )
-                                                    ),
-                                ],
+                            child: SizedBox(
+                              height: double.infinity,
+                              child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisSize: MainAxisSize.min,
+                              children: <Widget>[
+                              Container(
+                                width: 100,
+                                margin: const EdgeInsets.symmetric(vertical: 5),
+                                child: Row(
+                                  children: <Widget>[
+                                    Expanded(
+                                      flex: 2,
+                                      
+                                      child: Text(
+                                        userName["user"]?['name'] ?? '',
+                                        overflow: TextOverflow.ellipsis,
+                                        maxLines: 1,
+                                        softWrap: false,
+                                      ),
+                                      ),
+                                    Expanded(
+                                      flex: 1,
+                                      child: Image(
+                                        image: NetworkImage('${userName["user"]?["avatar"]?["large"]}'),
+                                        width: 40,
+                                        height: 40,
+                                )
+                                                      ),
+                                  ],
+                                ),
                               ),
+                                                    userName["text"] != null? Text(userName["text"])
+                                                    : Text(
+                              style: const TextStyle(
+                                fontSize: 12,
+                              ),
+                              overflow: TextOverflow.ellipsis,
+                              maxLines: 3,
+                              softWrap: false,
+                              '${userName["status"]} ${userName["progress"]} of ${userName["media"]?["title"]?["userPreferred"]}') 
+                                                    
+                                                    
+                              ]
+                                                    ),
                             ),
-                                                  userName["text"] != null? Text(userName["text"])
-                                                  : Text(
-                            style: const TextStyle(
-                              fontSize: 12,
-                            ),
-                            overflow: TextOverflow.ellipsis,
-                            maxLines: 3,
-                            softWrap: false,
-                            '${userName["status"]} ${userName["progress"]} of ${userName["media"]?["title"]?["userPreferred"]}') 
-                                                  
-                                                  
-                            ]
-                                                  ),
                           )),
                   
                       ],
