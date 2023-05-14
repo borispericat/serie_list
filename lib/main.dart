@@ -38,9 +38,10 @@ class MyHomePageState extends State<MyHomePage> {
   
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-        body: Center(
-          child: ListActivity(),
+    return  Scaffold(
+        body: Container(
+          color: const Color.fromRGBO(237,241,245,1),
+          child: const ListActivity(),
         ),
       );
   }

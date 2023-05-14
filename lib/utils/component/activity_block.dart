@@ -38,47 +38,57 @@ Widget build(BuildContext context) {
                 itemBuilder: (Context, index) {
                   final userName = beta[index];
 
-                  return Row(
-                    children: <Widget>[
-                      Expanded(
-                        child: 
-                        Image(
-                          image: NetworkImage('${userName["media"]?["coverImage"]?["large"]}'),
-                          width: 75,
-                          height: 120,
-                          )
-                          ),
-                      Expanded(child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisSize: MainAxisSize.min,
-                        children: <Widget>[
-                        Row(
-                          children: <Widget>[
-                            Expanded(
-                              child: Text(
-                                userName["user"]?['name'] ?? '',
-                                overflow: TextOverflow.ellipsis,
-                                maxLines: 1,
-                                softWrap: false,
-                              ),
-                              ),
-                            Expanded(
-                              child: Image(
-                                image: NetworkImage('${userName["user"]?["avatar"]?["large"]}'),
-                                width: 40,
-                                height: 40,
-                        )
-                      ),
-                          ],
-                        ),
-                      userName["text"] != null? Text(userName["text"])
-                      : Text(userName["status"]) 
-                      
-                      
-                        ]
-                      )),
+                  return Container(
+                    color: const Color.fromRGBO(241,250,250,1),
+                    margin: const EdgeInsets.symmetric(horizontal: 15),
+                    child: Row(
+                      children: <Widget>[
 
-                    ],
+                          Container(
+                            height: 100,
+                            width: 70,
+                            decoration:BoxDecoration(
+                              image: DecorationImage(
+                              fit: BoxFit.contain,
+                              image: NetworkImage('${userName["media"]?["coverImage"]?["large"]}'),
+                              
+                              )
+                            ) 
+                            
+                              ),
+                        
+                        Expanded(child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisSize: MainAxisSize.min,
+                          children: <Widget>[
+                          Row(
+                            children: <Widget>[
+                              Expanded(
+                                child: Text(
+                                  userName["user"]?['name'] ?? '',
+                                  overflow: TextOverflow.ellipsis,
+                                  maxLines: 1,
+                                  softWrap: false,
+                                ),
+                                ),
+                              Expanded(
+                                child: Image(
+                                  image: NetworkImage('${userName["user"]?["avatar"]?["large"]}'),
+                                  width: 40,
+                                  height: 40,
+                          )
+                        ),
+                            ],
+                          ),
+                        userName["text"] != null? Text(userName["text"])
+                        : Text(userName["status"]) 
+                        
+                        
+                          ]
+                        )),
+                  
+                      ],
+                    ),
                   );
                 }
                 );
