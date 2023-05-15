@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 import '../graphql/request.dart';
+import 'time.dart';
 
 
 
@@ -41,9 +42,13 @@ Widget build(BuildContext context) {
                   return Container(
                     margin: const EdgeInsets.fromLTRB(15, 0,15, 24),
                     height: 125,
-                    color: const Color.fromRGBO(241,250,250,1),
+                    decoration: BoxDecoration(
+                      color: const Color.fromRGBO(241,250,250,1),
+                      borderRadius: BorderRadius.circular(8),
+                    ),
                     child: ClipRRect(
-                      borderRadius: BorderRadius.circular(12),
+                      borderRadius: BorderRadius.circular(8),
+                      
                       child: Row(
                         children: <Widget>[
                           Flexible(
@@ -69,34 +74,38 @@ Widget build(BuildContext context) {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 mainAxisSize: MainAxisSize.min,
                                 children: <Widget>[
-                                Container(
-                                  width: 100,
-                                  margin: const EdgeInsets.symmetric(vertical: 5),
-                                  child: Row(
-                                    children: <Widget>[
-                                      Expanded(
-                                        flex: 2,
-                                        
-                                        child: Text(
-                                          userName["user"]?['name'] ?? '',
-                                          overflow: TextOverflow.ellipsis,
-                                          maxLines: 1,
-                                          softWrap: false,
-                                        ),
-                                        ),
-                                      Expanded(
-                                        flex: 1,
-                                        child: Image(
-                                          image: NetworkImage('${userName["user"]?["avatar"]?["large"]}'),
-                                          width: 40,
-                                          height: 40,
-                                  )
-                                                        ),
-                                    ],
-                                  ),
+                                Row(
+                                  children: <Widget>[
+                                    Container(
+                                      width: 100,
+                                      margin: const EdgeInsets.symmetric(vertical: 5),
+                                      child: Row(
+                                        children: <Widget>[
+                                          Expanded(
+                                            flex: 2,
+                                            child: Text(
+                                              userName["user"]?['name'] ?? '',
+                                              overflow: TextOverflow.ellipsis,
+                                              maxLines: 1,
+                                              softWrap: false,
+                                            ),
+                                            ),
+                                          Expanded(
+                                            flex: 1,
+                                            child: Image(
+                                              image: NetworkImage('${userName["user"]?["avatar"]?["large"]}'),
+                                              width: 40,
+                                              height: 40,
+                                      )
+                                                            ),
+                                        ],
+                                      ),
+                                    ),
+                                    Text(readTImeStamp(userName["createdAt"]))
+                                  ],
                                 ),
-                                                      userName["text"] != null? Text(userName["text"])
-                                                      : Text(
+                                userName["text"] != null? Text(userName["text"]): 
+                                Text(
                                 style: const TextStyle(
                                   fontSize: 12,
                                 ),
