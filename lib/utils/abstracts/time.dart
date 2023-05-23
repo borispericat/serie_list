@@ -5,6 +5,10 @@ String readTImeStamp(int timeInt) {
 
   var nowStamps = (now.millisecondsSinceEpoch / 1000).round();
 
+    var intervall = now.add(const Duration(minutes: 1));
+    if (intervall == now) {
+      
+    }
   
   var diff = nowStamps - timeInt;
   if (diff == 0) {
@@ -15,7 +19,7 @@ String readTImeStamp(int timeInt) {
       return '${diff%60} seconds ago';
 
   } 
-  
+ 
   return '${(diff/60).round()} min ${diff%60} seconds ago';
 
   

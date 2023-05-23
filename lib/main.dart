@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
-import 'package:serie_list/utils/component/activity_block.dart';
+import 'package:serie_list/utils/layout/activity_block.dart';
 import 'utils/graphql/provider.dart';
 
 void main() async {
