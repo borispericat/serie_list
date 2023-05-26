@@ -1,6 +1,13 @@
 String requestApi = """
-query (\$perPage: Int) { 
-  Page (perPage: \$perPage) {
+query (\$page: Int, \$perPage: Int) { 
+  Page (page: \$page, perPage: \$perPage) {
+    pageInfo {
+       total
+      currentPage
+      lastPage
+      hasNextPage
+      perPage
+    }
      activities(isFollowing: true, sort: ID_DESC) {
       ... on TextActivity {
         id
@@ -141,5 +148,4 @@ query (\$perPage: Int) {
 
 }
 """;
-
 

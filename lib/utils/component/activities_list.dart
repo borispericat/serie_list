@@ -9,6 +9,7 @@ class Activity extends StatefulWidget {
   final int time;
   final String status;
   const Activity({
+    super.key,
     this.media = '',
     this.avatar = '',
     this.userName ='',
@@ -49,7 +50,7 @@ class _Activity extends State<Activity> {
       Expanded(
       flex: 6,
       child: Container(
-      margin: const EdgeInsets.symmetric(horizontal: 15),
+      margin: const EdgeInsets.fromLTRB(15,0,15,0),
       child: SizedBox(
       height: double.infinity,
       child: Column(
@@ -57,6 +58,7 @@ class _Activity extends State<Activity> {
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
       Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: <Widget>[
       Container(
       width: 100,
