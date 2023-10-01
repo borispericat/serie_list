@@ -39,6 +39,7 @@ class MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
+      bottomNavigationBar: const BottomAppBar(),
         body: Container(
           color: const Color.fromRGBO(237,241,245,1),
           child: const ListActivity(),

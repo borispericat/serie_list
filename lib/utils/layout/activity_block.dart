@@ -11,7 +11,7 @@ class ListActivity extends StatefulWidget {
   @override
   State<ListActivity> createState() => _ListActivity();
 }
-class _ListActivity extends State<ListActivity> with AutomaticKeepAliveClientMixin {
+class _ListActivity extends State<ListActivity>{
   int page = 1;
   final int perPage = 25;
 
@@ -90,7 +90,6 @@ return const Text('No data');
 
 });
 }
-@override
-bool get wantKeepAlive => true;
+
 
 }
